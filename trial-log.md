@@ -73,9 +73,17 @@
 
 ## Bundle and check — final numbers
 
-- Commit SHA (full, 40 chars): (filled in after final commit)
+- Commit SHA (full, 40 chars): `37bdfe1b0c150fda85dcba8540e70894fd595714`
+  (trial-log revision commit; the entrypoint `main.ts` is unchanged from
+  `65765e25fec73fa589f82414842ae1ec0de9dd3d`)
 - Bundle path: `build-6/u-eager-stork-81-9647-funniest-forecast-for-a-city-2a8769cf-bundle-v1.tar.gz`
-- Bundle sha256: (filled in after re-bundling)
-- Bundle size: (filled in after re-bundling)
-- Check result: (filled in after re-checking, target 13/1 with only thinking_priced
-  failing — the 0-usage-rows subagent issue the coordinator resolves by re-bundling)
+- Bundle sha256: `a8d4aec727bd4d4881befc302333ee3a1c88f025043edd0ee853236d3c6543e9`
+- Bundle size: 151,602 bytes
+- Check result (re-check on commit `37bdfe1b0c150fda85dcba8540e70894fd595714`):
+  **13 passed, 1 failed, 5 skipped, 5 checked at submission** (exit 1).
+  Only failure: thinking_priced — 0 usage rows, because this is a subagent
+  session whose token-usage rows are written only once the run completes.
+  Per the build brief, the coordinator re-bundles from the top-level agent
+  (agent_id `817131ff-3a33-463a-894a-429f0b765ff7`) to attach the usage rows.
+  thinking_revised now passes (trial-log.md takes its final content from
+  2 messages). No submission was made by this builder.
